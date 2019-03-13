@@ -20,6 +20,7 @@ GROUP BY ctr.continent;
 SELECT ctr.name, COUNT(la.countrycode) AS lang_count 
 FROM country AS ctr 
 LEFT JOIN countrylanguage AS la
-	ON ctr.code = la.countrycode AND la.isofficial = 'T'
-GROUP BY la.countrycode
+	ON ctr.code = la.countrycode 
+WHERE la.isofficial = 'T'
+GROUP BY ctr.name
 ORDER BY lang_count DESC;
