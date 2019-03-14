@@ -4,17 +4,17 @@ USE bookstore;
 
 CREATE TABLE customers
 (
-id INT AUTO_INCREMENT PRIMARY KEY,
-name VARCHAR(50) NOT NULL
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	name VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE orders
 (
-id INT AUTO_INCREMENT PRIMARY KEY,
-date DATE,
-customer_id INT,
-sum INT,
-FOREIGN KEY (customer_id) REFERENCES customers(id)
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	date DATE, 
+	customer_id INT, NOT NULL,
+	sum INT, NOT NULL,
+	FOREIGN KEY (customer_id) REFERENCES customers(id)
 );
 
 INSERT INTO customers (name)
@@ -38,8 +38,9 @@ VALUES ('2018-03-02', 2, 4500),
 
 SELECT * FROM orders;
 
-SELECT c.name AS cust_name, COUNT(o.id) AS count_of_order FROM customers AS c
+SELECT c.name AS cust_name, COUNT(o.id) AS count_of_order 
+FROM customers AS c
 LEFT JOIN orders AS o 
 	ON c.id = o.customer_id
-GROUP BY c.name
+GROUP BY c.id, c.name
 ORDER BY count_of_order DESC;
