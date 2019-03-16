@@ -12,8 +12,8 @@ CREATE TABLE orders
 (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	date DATE, 
-	customer_id INT, NOT NULL,
-	sum INT, NOT NULL,
+	customer_id INT NOT NULL,
+	sum INT NOT NULL,
 	FOREIGN KEY (customer_id) REFERENCES customers(id)
 );
 
